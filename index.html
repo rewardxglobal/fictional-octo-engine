@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b18">
+<title>RewardX Global</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#090b18;--panel:#111429;--panel2:#171b36;--purple:#9270ff;--purple2:#7048ff;--cyan:#57e6ff;--text:#f6f6ff;--muted:#9298b8;--border:rgba(255,255,255,.08);--green:#48e6ad}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(ellipse at 15% 0%,rgba(105,70,255,.13),transparent 38%),radial-gradient(ellipse at 100% 40%,rgba(48,111,255,.07),transparent 35%),var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;min-height:100vh;padding-bottom:100px}
+button{font-family:inherit;cursor:pointer;color:inherit}button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.app{max-width:520px;min-height:100vh;margin:auto;padding:20px 17px 30px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:25px}.brand{display:flex;align-items:center;gap:10px}.brand-logo{width:43px;height:43px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#a18aff,#6940ff);box-shadow:0 5px 22px rgba(112,72,255,.35);color:white}.brand-logo svg{width:25px;height:25px;stroke-width:2.4}.brand-name{font-size:18px;font-weight:900;letter-spacing:-.7px}.brand-name span{color:#a38aff}.brand-sub{color:var(--muted);font-size:10px;margin-top:4px;letter-spacing:1.6px}.header-actions{display:flex;gap:9px;align-items:center}.icon-button,.profile-avatar{width:43px;height:43px;border-radius:15px;background:rgba(255,255,255,.045);border:1px solid var(--border);display:grid;place-items:center;position:relative}.notification-dot{width:7px;height:7px;border-radius:50%;background:#ff6c9e;position:absolute;top:9px;right:10px}.profile-avatar{padding:2px;background:linear-gradient(140deg,#b6a2ff,#7048ff,#4de3ff)}.avatar-inner{width:100%;height:100%;border-radius:13px;background:linear-gradient(145deg,#30215e,#151a36);display:grid;place-items:center;color:#d8ccff}
+.welcome{margin-bottom:20px}.eyebrow{color:#a899ff;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:9px}.welcome h1{font-size:25px;font-weight:900;letter-spacing:-.9px;line-height:1.3}.welcome h1 span{color:#a38aff}.welcome p{color:var(--muted);font-size:12px;line-height:1.6;margin-top:8px}
+.balance-card{position:relative;overflow:hidden;border-radius:25px;padding:23px 21px;background:radial-gradient(circle at 90% 0%,rgba(255,255,255,.2),transparent 35%),linear-gradient(125deg,#6744ee 0%,#7c52ff 45%,#4d38c7 100%);box-shadow:0 15px 38px rgba(87,56,224,.24);margin-bottom:22px}.balance-top{display:flex;justify-content:space-between;align-items:center}.balance-label{color:rgba(255,255,255,.8);font-size:12px;font-weight:600}.balance-icon{width:39px;height:39px;display:grid;place-items:center;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.15);border-radius:13px}.balance-amount{font-size:37px;font-weight:900;letter-spacing:-1.7px;margin:13px 0 5px}.balance-amount small{font-size:17px;font-weight:600;letter-spacing:0}.balance-note{font-size:11px;color:rgba(255,255,255,.75)}.balance-bottom{display:flex;gap:10px;margin-top:23px}.balance-btn{flex:1;min-height:43px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.14);border-radius:13px;color:white;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:7px}.balance-btn.primary{background:white;color:#6041dc}
+.section{margin-top:26px}.section-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.section-heading h2{font-size:16px;font-weight:850;letter-spacing:-.3px}.section-heading button{background:transparent;border:0;color:#ac98ff;font-size:11px;font-weight:800}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat-card{min-width:0;background:linear-gradient(145deg,#151931,#101326);border:1px solid var(--border);border-radius:18px;padding:14px 11px}.stat-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;margin-bottom:12px}.stat-icon svg{width:19px;height:19px}.purple{color:#b6a3ff;background:rgba(146,112,255,.15)}.cyan{color:var(--cyan);background:rgba(87,230,255,.11)}.green{color:var(--green);background:rgba(72,230,173,.11)}.stat-number{font-size:19px;font-weight:900;letter-spacing:-.5px;overflow-wrap:anywhere}.stat-label{font-size:10px;color:var(--muted);margin-top:6px}
+.earn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.earn-card{background:linear-gradient(150deg,#171b37,#101326);border:1px solid var(--border);border-radius:19px;padding:15px 8px;min-width:0;text-align:center;transition:.2s}.earn-card:hover{transform:translateY(-3px);border-color:rgba(146,112,255,.5)}.earn-icon{width:45px;height:45px;border-radius:15px;display:grid;place-items:center;margin:0 auto 11px}.earn-icon svg{width:23px;height:23px}.e-purple{background:rgba(146,112,255,.16);color:#b8a5ff}.e-cyan{background:rgba(87,230,255,.12);color:#68eaff}.e-green{background:rgba(72,230,173,.12);color:#56efb6}.e-orange{background:rgba(255,173,87,.13);color:#ffbd78}.e-pink{background:rgba(255,108,158,.13);color:#ff85b0}.e-blue{background:rgba(83,145,255,.13);color:#80b1ff}.earn-title{font-size:11px;font-weight:800;line-height:1.5}.earn-sub{color:var(--muted);font-size:9px;margin-top:5px}
+.bonus-card{border-radius:21px;padding:17px;border:1px solid rgba(146,112,255,.22);background:radial-gradient(circle at 100% 0%,rgba(146,112,255,.13),transparent 45%),#12152a;display:flex;align-items:center;gap:13px}.bonus-art{width:52px;height:52px;flex-shrink:0;display:grid;place-items:center;border-radius:17px;background:linear-gradient(145deg,#a48aff,#6742e8)}.bonus-content{flex:1;min-width:0}.bonus-content h3{font-size:13px;font-weight:850}.bonus-content p{font-size:10px;color:var(--muted);line-height:1.5;margin-top:5px}.claim-btn{border:0;border-radius:12px;padding:11px 13px;color:white;font-size:11px;font-weight:850;background:linear-gradient(135deg,#9876ff,#7048ff);white-space:nowrap}.claim-btn:disabled{opacity:.6;cursor:default}
+.task-card{display:flex;align-items:center;gap:12px;padding:14px;border-radius:18px;background:#13162b;border:1px solid var(--border);margin-bottom:10px}.task-icon{width:43px;height:43px;border-radius:14px;display:grid;place-items:center;flex-shrink:0}.task-info{flex:1;min-width:0}.task-info h3{font-size:12px;font-weight:800}.task-info p{font-size:10px;color:var(--muted);margin-top:5px}.task-reward{color:var(--green);font-size:11px;font-weight:900;white-space:nowrap}
+.reward-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.reward-card{border:1px solid var(--border);background:linear-gradient(145deg,#161a32,#111326);border-radius:19px;padding:15px}.reward-symbol{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:20px;font-weight:900;margin-bottom:13px}.paypal{color:#8bbcff;background:rgba(54,132,255,.13)}.amazon{color:#ffbf70;background:rgba(255,173,87,.12)}.google{color:#86e9b6;background:rgba(72,230,173,.12)}.steam{color:#d1c5ff;background:rgba(146,112,255,.15)}.reward-card h3{font-size:12px;font-weight:850}.reward-card p{color:var(--muted);font-size:10px;margin:7px 0 13px}.reward-bottom{display:flex;align-items:center;justify-content:space-between;gap:5px}.reward-price{font-size:11px;color:#b8a5ff;font-weight:850}.redeem-btn{border:0;border-radius:9px;background:rgba(146,112,255,.18);color:#c2b3ff;font-size:10px;font-weight:800;padding:8px 10px}
+.activity-list{border:1px solid var(--border);border-radius:18px;overflow:hidden;background:#111429}.activity-item{display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px solid var(--border)}.activity-item:last-child{border-bottom:0}.activity-icon{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;color:var(--green);background:rgba(72,230,173,.1)}.activity-info{flex:1}.activity-info h3{font-size:11px;font-weight:800}.activity-info p{color:var(--muted);font-size:9px;margin-top:5px}.activity-amount{color:var(--green);font-size:12px;font-weight:850}
+.bottom-nav{position:fixed;z-index:20;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,520px);padding:10px 9px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);background:rgba(12,14,30,.94);border-top:1px solid rgba(255,255,255,.08);backdrop-filter:blur(22px)}.nav-item{border:0;background:transparent;color:#747b9d;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:7px 2px;font-size:9px;font-weight:700}.nav-item svg{width:22px;height:22px}.nav-item.active{color:#b7a5ff}.page{display:none}.page.active{display:block;animation:pageIn .22s ease}@keyframes pageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.profile-card{border:1px solid var(--border);background:linear-gradient(145deg,#171b36,#111429);border-radius:23px;padding:23px 18px;text-align:center;margin-bottom:20px}.big-avatar{width:91px;height:91px;padding:3px;border-radius:29px;background:linear-gradient(140deg,#c4b5ff,#774bff,#54e8ff);margin:0 auto 14px}.big-avatar-inner{width:100%;height:100%;border-radius:26px;display:grid;place-items:center;color:#e3dcff;background:linear-gradient(145deg,#30215e,#151a36)}.big-avatar-inner svg{width:48px;height:48px}.profile-card h2{font-size:20px;font-weight:900}.profile-card p{font-size:11px;color:var(--muted);margin-top:7px;overflow-wrap:anywhere}.member-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(146,112,255,.25);background:rgba(146,112,255,.12);color:#c4b5ff;padding:7px 11px;border-radius:30px;margin-top:13px;font-size:10px;font-weight:800}.profile-menu{display:flex;flex-direction:column;gap:10px}.profile-menu-item{width:100%;border:1px solid var(--border);background:#13162b;border-radius:16px;padding:14px;display:flex;align-items:center;gap:13px;text-align:left}.menu-icon{width:43px;height:43px;border-radius:14px;display:grid;place-items:center;color:#bbaaff;background:rgba(146,112,255,.13)}.menu-copy{flex:1}.menu-copy h3{font-size:12px;font-weight:800}.menu-copy p{font-size:10px;color:var(--muted);margin-top:5px}.menu-arrow{color:#747b9d}
+.wallet-card{background:linear-gradient(135deg,#6845ed,#4932b5);border-radius:22px;padding:23px;margin-bottom:16px}.wallet-card p{color:rgba(255,255,255,.76);font-size:12px}.wallet-card h2{font-size:35px;margin-top:11px;font-weight:900}.wallet-card .wallet-note{font-size:10px;margin-top:8px}
+.modal-overlay{display:none;position:fixed;inset:0;z-index:50;background:rgba(3,4,14,.78);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:18px}.modal-overlay.show{display:flex}.modal{width:100%;max-width:390px;border-radius:24px;padding:22px;background:#151830;border:1px solid rgba(255,255,255,.1);box-shadow:0 25px 70px rgba(0,0,0,.4)}.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.modal-header h2{font-size:18px}.close-modal{border:1px solid var(--border);background:rgba(255,255,255,.04);width:35px;height:35px;border-radius:12px;display:grid;place-items:center}.form-group{margin-bottom:15px}.form-group label{display:block;font-size:11px;color:#b9bed7;margin-bottom:8px;font-weight:700}.form-group input,.form-group select{width:100%;background:#0d1022;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:13px;color:white;font-size:12px;font-family:inherit;outline:none}.primary-btn{width:100%;border:0;border-radius:13px;padding:14px;background:linear-gradient(135deg,#9876ff,#7048ff);color:white;font-size:12px;font-weight:850;margin-top:5px}.modal-description{color:var(--muted);font-size:11px;line-height:1.7;margin-bottom:17px}
+.toast{position:fixed;z-index:100;left:50%;bottom:100px;transform:translate(-50%,15px);background:#242744;color:white;border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:12px 17px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;width:max-content;max-width:calc(100% - 35px);text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.25)}.toast.show{opacity:1;transform:translate(-50%,0)}.demo-note{color:#747b9d;font-size:9px;text-align:center;line-height:1.7;margin-top:25px}
+.referral-hero{padding:22px;border:1px solid rgba(146,112,255,.25);border-radius:23px;background:radial-gradient(circle at 100% 0%,rgba(146,112,255,.2),transparent 45%),linear-gradient(145deg,#171b36,#111429);margin-bottom:17px}.referral-hero-icon{width:55px;height:55px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,#9876ff,#7048ff);margin-bottom:17px}.referral-hero-icon svg{width:29px;height:29px}.referral-hero h2{font-size:20px;line-height:1.4}.referral-hero h2 span{color:#b8a5ff}.referral-hero p{font-size:11px;color:var(--muted);line-height:1.7;margin-top:9px}.referral-box{background:#0c1022;border:1px solid var(--border);border-radius:16px;padding:13px;margin-top:18px}.referral-box label{display:block;font-size:10px;color:var(--muted);margin-bottom:9px;font-weight:700}.referral-link-row{display:flex;gap:8px}.referral-link-input{flex:1;min-width:0;background:#171b36;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 10px;color:#e9e5ff;font-size:11px;outline:none}.copy-btn{border:0;border-radius:10px;padding:0 13px;background:linear-gradient(135deg,#9876ff,#7048ff);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px}.copy-btn svg{width:16px;height:16px}.share-btn{width:100%;border:1px solid rgba(87,230,255,.2);border-radius:13px;background:rgba(87,230,255,.08);color:#80edff;padding:13px;font-size:12px;font-weight:800;margin-top:10px;display:flex;justify-content:center;align-items:center;gap:8px}.referral-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin-top:16px}.referral-stat{background:#13162b;border:1px solid var(--border);border-radius:16px;padding:17px}.referral-stat strong{display:block;font-size:23px;color:#b8a5ff}.referral-stat span{display:block;font-size:10px;color:var(--muted);margin-top:6px}.how-step{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--border)}.how-step:last-child{border-bottom:0}.step-num{width:30px;height:30px;flex-shrink:0;border-radius:10px;background:rgba(146,112,255,.16);color:#c6b7ff;display:grid;place-items:center;font-weight:900;font-size:12px}.how-step h3{font-size:12px;margin:2px 0 5px}.how-step p{font-size:10px;line-height:1.6;color:var(--muted)}
+@media(max-width:360px){.app{padding-left:12px;padding-right:12px}.brand-name{font-size:16px}.balance-amount{font-size:32px}.earn-title{font-size:10px}.claim-btn{padding:10px 9px}.stat-card{padding:12px 8px}.stat-number{font-size:17px}.referral-link-row{flex-direction:column}.copy-btn{min-height:40px}}
+@media(min-width:700px){body{padding-top:20px}.app{border:1px solid rgba(255,255,255,.04);border-radius:28px;background:rgba(9,11,24,.35);margin-bottom:25px}.bottom-nav{bottom:15px;border:1px solid var(--border);border-radius:20px;width:min(calc(100% - 30px),490px)}}
+
+/* ULTRA MODERN UI UPGRADE */
+:root {
+  --glass: rgba(255,255,255,.055);
+  --glow: rgba(146,112,255,.28);
+}
+body {
+  background:
+    radial-gradient(ellipse at 8% -5%, rgba(139,92,246,.24), transparent 34%),
+    radial-gradient(ellipse at 105% 22%, rgba(64,196,255,.12), transparent 31%),
+    radial-gradient(ellipse at 50% 100%, rgba(112,72,255,.07), transparent 40%),
+    var(--bg);
+  background-attachment: fixed;
+}
+.app { isolation: isolate; }
+.brand-logo, .profile-avatar, .balance-card, .bonus-art {
+  position: relative;
+}
+.brand-logo::after {
+  content:"";
+  position:absolute; inset:-4px;
+  border-radius:18px;
+  border:1px solid rgba(177,155,255,.25);
+  animation: logoPulse 3s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes logoPulse {
+  0%,100% { transform:scale(.96); opacity:.35; }
+  50% { transform:scale(1.08); opacity:.9; }
+}
+.stat-card, .earn-card, .reward-card, .task-card, .profile-menu-item,
+.activity-list, .bonus-card, .profile-card {
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.10);
+}
+.stat-card, .earn-card, .reward-card, .profile-menu-item, .icon-button,
+.balance-btn, .claim-btn, .redeem-btn, .primary-btn, .nav-item, .profile-avatar {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button {
+  transition: transform .18s cubic-bezier(.2,.8,.2,1),
+              filter .18s ease, box-shadow .18s ease,
+              border-color .18s ease, background .18s ease;
+}
+button.is-pressed, button:active {
+  transform: scale(.965) !important;
+  filter: brightness(1.16);
+}
+.earn-card:active, .reward-card:active, .stat-card:active,
+.profile-menu-item:active, .task-card:active {
+  box-shadow: 0 0 0 1px rgba(167,139,250,.22), 0 8px 24px rgba(112,72,255,.12);
+}
+.balance-card {
+  box-shadow: 0 18px 48px rgba(87,56,224,.27), inset 0 1px 0 rgba(255,255,255,.18);
+}
+.balance-card::before { animation: orbit 13s linear infinite; }
+.balance-card::after { animation: orbit 18s linear infinite reverse; }
+@keyframes orbit { to { transform: rotate(360deg); } }
+.section-heading h2 { display:flex; align-items:center; gap:8px; }
+.earn-card:hover, .reward-card:hover, .stat-card:hover {
+  box-shadow: 0 12px 30px rgba(112,72,255,.14);
+}
+.bottom-nav {
+  box-shadow: 0 -12px 35px rgba(0,0,0,.18);
+  padding-top: 11px;
+}
+.nav-item { position:relative; overflow:hidden; border-radius:14px; }
+.nav-item::before {
+  content:"";
+  position:absolute;
+  width:54px; height:54px; border-radius:50%;
+  background:rgba(146,112,255,.13);
+  transform:scale(0);
+  transition:transform .25s ease;
+}
+.nav-item.active::before { transform:scale(1); }
+.nav-item svg, .nav-item span { position:relative; z-index:1; }
+.nav-item.active svg { animation: navBounce .28s ease; }
+@keyframes navBounce {
+  0% { transform:translateY(2px) scale(.88); }
+  70% { transform:translateY(-4px) scale(1.1); }
+  100% { transform:translateY(-2px) scale(1); }
+}
+.page.active { animation: pageIn .28s cubic-bezier(.2,.8,.2,1); }
+.page-switching { opacity:.45; filter:blur(1px); transition:opacity .12s ease, filter .12s ease; }
+.primary-btn, .claim-btn {
+  box-shadow: 0 7px 20px rgba(112,72,255,.22), inset 0 1px 0 rgba(255,255,255,.16);
+}
+.primary-btn:active, .claim-btn:active { box-shadow:0 2px 8px rgba(112,72,255,.18); }
+.form-group input, .form-group select { transition:border-color .2s, box-shadow .2s; }
+.form-group input:focus, .form-group select:focus {
+  box-shadow:0 0 0 3px rgba(146,112,255,.13);
+}
+.modal-overlay.show .modal { animation: modalIn .25s cubic-bezier(.2,.8,.2,1); }
+.toast { backdrop-filter:blur(18px); }
+.loading-bar {
+  position:fixed; top:0; left:0; z-index:120;
+  height:3px; width:0;
+  background:linear-gradient(90deg,#7c52ff,#57e6ff,#b7a5ff);
+  box-shadow:0 0 15px rgba(146,112,255,.7);
+  opacity:0;
+}
+.loading-bar.run { opacity:1; animation:loadSweep .42s ease-out forwards; }
+@keyframes loadSweep {
+  0% { width:0; }
+  65% { width:78%; }
+  100% { width:100%; opacity:0; }
+}
+.referral-box {
+  border:1px solid rgba(146,112,255,.26);
+  background:linear-gradient(145deg,rgba(146,112,255,.13),rgba(87,230,255,.045));
+  border-radius:17px; padding:15px; margin:14px 0;
+}
+.referral-code-row { display:flex; align-items:center; gap:8px; margin-top:8px; }
+.referral-code {
+  flex:1; min-width:0; border:1px dashed rgba(184,165,255,.45);
+  background:rgba(10,12,29,.55); border-radius:11px; padding:12px;
+  color:#d5caff; font-size:14px; font-weight:900; letter-spacing:1.5px;
+  text-align:center;
+}
+.referral-link {
+  width:100%; margin-top:9px; border:1px solid var(--border);
+  border-radius:10px; padding:11px; background:rgba(10,12,29,.55);
+  color:#b9bed7; font:11px Inter, sans-serif; overflow-wrap:anywhere;
+}
+.referral-actions { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:12px; }
+.referral-actions button {
+  border:0; border-radius:11px; padding:12px 8px; font-size:11px; font-weight:850;
+  background:linear-gradient(135deg,#9876ff,#7048ff); color:#fff;
+}
+.referral-actions button.secondary {
+  background:rgba(255,255,255,.07); border:1px solid var(--border);
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:.01ms !important; animation-iteration-count:1 !important;
+    scroll-behavior:auto !important; transition-duration:.01ms !important;
+  }
+}
+
+
+/* Firebase authentication gate */
+.auth-gate{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:22px;background:radial-gradient(ellipse at 20% 0%,rgba(105,70,255,.22),transparent 45%),#090b18;overflow-y:auto}
+.auth-gate.hidden{display:none}
+.auth-box{width:100%;max-width:420px;border:1px solid rgba(255,255,255,.1);border-radius:28px;padding:26px 22px;background:rgba(17,20,41,.94);box-shadow:0 25px 80px rgba(0,0,0,.38);backdrop-filter:blur(18px)}
+.auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.auth-logo{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(135deg,#a18aff,#6940ff);font-size:24px;font-weight:900;box-shadow:0 8px 28px rgba(112,72,255,.35)}
+.auth-brand h2{font-size:20px}.auth-brand p,.auth-subtitle{color:var(--muted);font-size:13px;line-height:1.6;margin-top:4px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:5px;border-radius:14px;background:#0b0e20;margin:18px 0}
+.auth-tab{border:0;border-radius:10px;padding:11px;background:transparent;color:var(--muted);font-weight:800}
+.auth-tab.active{background:linear-gradient(135deg,#9270ff,#7048ff);color:#fff}
+.auth-form .form-group{margin:14px 0}.auth-form label{display:block;color:#c9c9e4;font-size:12px;font-weight:700;margin-bottom:7px}
+.auth-form input{width:100%;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:#0b0e20;color:#fff;padding:13px 14px;font:inherit;outline:none}
+.auth-form input:focus{border-color:#9270ff;box-shadow:0 0 0 3px rgba(146,112,255,.12)}
+.auth-submit{width:100%;border:0;border-radius:13px;padding:14px;margin-top:9px;background:linear-gradient(135deg,#9270ff,#7048ff);color:white;font-weight:900}
+.auth-link{border:0;background:none;color:#b8a8ff;font-size:12px;margin-top:14px}
+.auth-message{font-size:12px;line-height:1.5;margin-top:12px;color:#ffc7c7;overflow-wrap:anywhere}
+.auth-message.success{color:#8ff0c8}
+.auth-setup{font-size:11px;color:#aeb3d1;line-height:1.6;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px;margin-top:15px}
+.auth-user-chip{font-size:11px;color:#bdb4ff;max-width:135px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+</style>
+</head>
+<body>
+
+<div class="auth-gate" id="authGate">
+  <div class="auth-box">
+    <div class="auth-brand"><div class="auth-logo">R</div><div><h2>RewardX Global</h2><p>Sign in to access your account</p></div></div>
+    <p class="auth-subtitle">Create an account or log in to continue to your dashboard.</p>
+    <div class="auth-tabs"><button class="auth-tab active" id="loginTab" type="button" onclick="setAuthMode('login')">Login</button><button class="auth-tab" id="registerTab" type="button" onclick="setAuthMode('register')">Register</button></div>
+    <form class="auth-form" id="authForm">
+      <div class="form-group" id="authNameGroup" hidden><label for="authName">Full name</label><input id="authName" type="text" autocomplete="name" maxlength="80" placeholder="Your name"></div>
+      <div class="form-group"><label for="authEmail">Email address</label><input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+      <div class="form-group"><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters"></div>
+      <div class="form-group" id="authConfirmGroup" hidden><label for="authConfirm">Confirm password</label><input id="authConfirm" type="password" autocomplete="new-password" minlength="6" placeholder="Re-enter password"></div>
+      <div class="form-group" id="authReferralGroup" hidden><label for="authReferral">Referral code (optional)</label><input id="authReferral" type="text" maxlength="32" placeholder="Enter referral code"></div>
+      <button class="auth-submit" id="authSubmit" type="submit">Login</button>
+    </form>
+    <button class="auth-submit" id="googleSignInBtn" type="button" style="margin-top:10px;background:linear-gradient(135deg,#30364f,#20253b);border:1px solid rgba(255,255,255,.14)">Continue with Google</button>
+    <button class="auth-link" id="forgotPassword" type="button" onclick="resetAuthPassword()">Forgot password?</button>
+    <div class="auth-message" id="authMessage" role="status" aria-live="polite"></div>
+    <div class="auth-setup" id="authSetup">Firebase setup is required: add your Firebase web app configuration in the code, then enable Email/Password in Firebase Authentication.</div>
+  </div>
+</div>
+
+<div class="loading-bar" id="loadingBar" aria-hidden="true"></div>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/><path d="m19 14 1.2 3.1L23 18l-2.8 1-1.2 3-1.1-3-2.9-1 2.9-.9L19 14Z"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-7h6v7"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13h18M12 9H7.5a2.5 2.5 0 1 1 2.5-2.5V9ZM12 9h4.5A2.5 2.5 0 1 0 14 6.5V9Z"/></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 9h18M16 14h2M6 5V3h12v2"/></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+<symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l4-4 4 3 6-7"/></symbol>
+<symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.7-1-1.8-1.5-3-1.5-1.7 0-3 1-3 2.4 0 3.4 6 1.7 6 5 0 1.5-1.3 2.6-3.1 2.6-1.3 0-2.5-.6-3.2-1.6M12 5v14"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18m6 5 2 2 4-4"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3V9Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+<symbol id="i-game" viewBox="0 0 24 24"><path d="M6 9h12a4 4 0 0 1 3.8 5l-1 3.5a2 2 0 0 1-3.2 1L14 16H10l-3.6 2.5a2 2 0 0 1-3.2-1L2.2 14A4 4 0 0 1 6 9Z"/><path d="M7 12v4M5 14h4"/><circle cx="16" cy="13" r=".8"/><circle cx="18" cy="15" r=".8"/></symbol>
+<symbol id="i-lightning" viewBox="0 0 24 24"><path d="m13 2-10 12h8l-1 8 11-13h-8l1-7Z"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v6a5 5 0 0 1-10 0V4ZM7 6H3v2a5 5 0 0 0 5 5M17 6h4v2a5 5 0 0 1-5 5"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 13.5a7 7 0 0 0 0-3l2-1.5-2-3-2.3 1a7 7 0 0 0-2.5-1.5L14 3h-4l-.3 2.5A7 7 0 0 0 7.2 7L5 6 3 9l2 1.5a7 7 0 0 0 0 3L3 15l2 3 2.2-1a7 7 0 0 0 2.5 1.5L10 21h4l.3-2.5a7 7 0 0 0 2.5-1.5l2.2 1 2-3-2-1.5Z"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.4 1.9c-1.1 1-1.9 1.4-1.9 3.1M12 17h.01"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3M12 14v3"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m18 6-12 12M6 6l12 12"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4m-6.6 7 6.6 4.1"/></symbol>
+</svg>
+
+<div class="app">
+<header class="header">
+  <div class="brand"><div class="brand-logo"><svg><use href="#i-spark"/></svg></div><div><div class="brand-name">Reward<span>X</span></div><div class="brand-sub">REWARDS · EARN · REDEEM</div></div></div>
+  <div class="header-actions">
+    <button class="icon-button" aria-label="Notifications" onclick="openModal('notifications')"><svg><use href="#i-bell"/></svg><span class="notification-dot"></span></button>
+    <button class="profile-avatar" aria-label="Open profile" onclick="showPage('profile')"><span class="avatar-inner"><svg><use href="#i-user"/></svg></span></button>
+  </div>
+</header>
+
+<main id="homePage" class="page active">
+  <section class="welcome"><div class="eyebrow">YOUR REWARD JOURNEY</div><h1>Welcome to <span>RewardX</span></h1><p>Discover activities, collect rewards and explore your earning dashboard.</p></section>
+  <section class="balance-card"><div class="balance-top"><div class="balance-label">Available Balance</div><div class="balance-icon"><svg><use href="#i-wallet"/></svg></div></div><div class="balance-amount"><small>$</small><span id="balanceAmount">0.00</span></div><div class="balance-note">Demo balance · No real payout connected</div><div class="balance-bottom"><button class="balance-btn primary" onclick="showPage('wallet')"><svg><use href="#i-arrow-down"/></svg>Withdraw</button><button class="balance-btn" onclick="showPage('earn')"><svg><use href="#i-lightning"/></svg>Earn More</button></div></section>
+  <section class="stats-grid">
+    <div class="stat-card"><div class="stat-icon purple"><svg><use href="#i-chart"/></svg></div><div class="stat-number" id="totalEarned">$0.00</div><div class="stat-label">Total Earned</div></div>
+    <div class="stat-card"><div class="stat-icon cyan"><svg><use href="#i-check"/></svg></div><div class="stat-number" id="tasksDone">0</div><div class="stat-label">Tasks Completed</div></div>
+    <div class="stat-card" onclick="showPage('referral')" style="cursor:pointer"><div class="stat-icon green"><svg><use href="#i-users"/></svg></div><div class="stat-number" id="homeReferrals">0</div><div class="stat-label">Referrals · View</div></div>
+  </section>
+  <section class="section"><div class="section-heading"><h2>Explore & Earn</h2><button onclick="showPage('earn')">View All →</button></div><div class="earn-grid">
+    <button class="earn-card" onclick="showTask('Daily Check-in')"><div class="earn-icon e-purple"><svg><use href="#i-calendar"/></svg></div><div class="earn-title">Daily Check-in</div><div class="earn-sub">Daily reward</div></button>
+    <button class="earn-card" onclick="showTask('Watch Videos')"><div class="earn-icon e-cyan"><svg><use href="#i-play"/></svg></div><div class="earn-title">Watch Videos</div><div class="earn-sub">Video activities</div></button>
+    <button class="earn-card" onclick="showTask('Complete Tasks')"><div class="earn-icon e-green"><svg><use href="#i-check"/></svg></div><div class="earn-title">Complete Tasks</div><div class="earn-sub">Task center</div></button>
+    <button class="earn-card" onclick="showTask('Play Games')"><div class="earn-icon e-orange"><svg><use href="#i-game"/></svg></div><div class="earn-title">Play Games</div><div class="earn-sub">Game activities</div></button>
+    <button class="earn-card" onclick="showPage('referral')"><div class="earn-icon e-pink"><svg><use href="#i-users"/></svg></div><div class="earn-title">Refer Friends</div><div class="earn-sub">Invite friends</div></button>
+    <button class="earn-card" onclick="showTask('Special Offers')"><div class="earn-icon e-blue"><svg><use href="#i-star"/></svg></div><div class="earn-title">Special Offers</div><div class="earn-sub">Explore offers</div></button>
+  </div></section>
+  <section class="section"><div class="section-heading"><h2>Daily Bonus</h2><button onclick="showTask('Daily Bonus')">Details</button></div><div class="bonus-card"><div class="bonus-art"><svg><use href="#i-gift"/></svg></div><div class="bonus-content"><h3>Daily Reward</h3><p>Try the daily bonus demo and see how the interface works.</p></div><button class="claim-btn" id="claimBtn" onclick="claimBonus()">Claim</button></div></section>
+  <section class="section"><div class="section-heading"><h2>Featured Activities</h2><button onclick="showPage('earn')">Explore →</button></div><div class="task-card"><div class="task-icon e-purple"><svg><use href="#i-lightning"/></svg></div><div class="task-info"><h3>Explore the Task Center</h3><p>Browse available demo activities.</p></div><div class="task-reward">Explore</div></div><div class="task-card"><div class="task-icon e-cyan"><svg><use href="#i-trophy"/></svg></div><div class="task-info"><h3>Discover Rewards</h3><p>Explore available reward options.</p></div><div class="task-reward">View</div></div></section>
+  <section class="section"><div class="section-heading"><h2>Withdraw Methods</h2><button onclick="showPage('rewards')">Withdraw →</button></div><div class="reward-grid">
+<div class="reward-card"><div class="reward-symbol" style="color:#f5c542;background:rgba(245,197,66,.13)">₮</div><h3>Binance (USDT)</h3><p>Crypto withdrawal request</p><div class="reward-bottom"><span class="reward-price">USDT</span><button class="redeem-btn" onclick="openWithdraw('Binance (USDT)')">Select</button></div></div>
+<div class="reward-card"><div class="reward-symbol paypal">P</div><h3>PayPal</h3><p>International payment request</p><div class="reward-bottom"><span class="reward-price">USD</span><button class="redeem-btn" onclick="openWithdraw('PayPal')">Select</button></div></div>
+<div class="reward-card"><div class="reward-symbol" style="color:#a88bff;background:rgba(146,112,255,.15)">P</div><h3>Payoneer</h3><p>International payment request</p><div class="reward-bottom"><span class="reward-price">USD</span><button class="redeem-btn" onclick="openWithdraw('Payoneer')">Select</button></div></div>
+</div><p class="demo-note">Demo only: real withdrawals are not connected yet.</p></section>
+  <section class="section"><div class="section-heading"><h2>Recent Activity</h2><button onclick="showPage('wallet')">History →</button></div><div class="activity-list" id="activityList"><div class="activity-item"><div class="activity-icon"><svg><use href="#i-spark"/></svg></div><div class="activity-info"><h3>Welcome to RewardX</h3><p>Your demo dashboard is ready.</p></div><div class="activity-amount">$0.00</div></div></div></section>
+</main>
+
+<section id="earnPage" class="page"><div class="welcome"><div class="eyebrow">ACTIVITY CENTER</div><h1>Explore <span>Earn</span></h1><p>Explore different activity categories in the RewardX demo.</p></div><div class="earn-grid">
+<button class="earn-card" onclick="showTask('Daily Check-in')"><div class="earn-icon e-purple"><svg><use href="#i-calendar"/></svg></div><div class="earn-title">Daily Check-in</div><div class="earn-sub">Daily activity</div></button>
+<button class="earn-card" onclick="showTask('Watch Videos')"><div class="earn-icon e-cyan"><svg><use href="#i-play"/></svg></div><div class="earn-title">Watch Videos</div><div class="earn-sub">Video activities</div></button>
+<button class="earn-card" onclick="showTask('Complete Tasks')"><div class="earn-icon e-green"><svg><use href="#i-check"/></svg></div><div class="earn-title">Complete Tasks</div><div class="earn-sub">Task center</div></button>
+<button class="earn-card" onclick="showTask('Play Games')"><div class="earn-icon e-orange"><svg><use href="#i-game"/></svg></div><div class="earn-title">Play Games</div><div class="earn-sub">Game activities</div></button>
+<button class="earn-card" onclick="showPage('referral')"><div class="earn-icon e-pink"><svg><use href="#i-users"/></svg></div><div class="earn-title">Refer Friends</div><div class="earn-sub">Referral program</div></button>
+<button class="earn-card" onclick="showTask('Special Offers')"><div class="earn-icon e-blue"><svg><use href="#i-star"/></svg></div><div class="earn-title">Special Offers</div><div class="earn-sub">Offer center</div></button>
+</div><p class="demo-note">These activities are UI previews. Real earning requires a backend and verified task integrations.</p></section>
+
+<section id="rewardsPage" class="page"><div class="welcome"><div class="eyebrow">PAYMENT CENTER</div><h1>Withdraw <span>Funds</span></h1><p>Choose an international payment method and submit a withdrawal request.</p></div>
+<div class="wallet-card"><p>Available Demo Balance</p><h2>$<span id="withdrawBalance">0.00</span></h2><p class="wallet-note">Demo balance only. No real money can be withdrawn yet.</p></div>
+<div class="section"><div class="section-heading"><h2>Choose Payment Method</h2></div><div class="reward-grid">
+<div class="reward-card"><div class="reward-symbol" style="color:#f5c542;background:rgba(245,197,66,.13)">₮</div><h3>Binance (USDT)</h3><p>Request a USDT payout</p><div class="reward-bottom"><span class="reward-price">USDT</span><button class="redeem-btn" onclick="openWithdraw('Binance (USDT)')">Withdraw</button></div></div>
+<div class="reward-card"><div class="reward-symbol paypal">P</div><h3>PayPal</h3><p>Request an international payout</p><div class="reward-bottom"><span class="reward-price">USD</span><button class="redeem-btn" onclick="openWithdraw('PayPal')">Withdraw</button></div></div>
+<div class="reward-card"><div class="reward-symbol" style="color:#a88bff;background:rgba(146,112,255,.15)">P</div><h3>Payoneer</h3><p>Request an international payout</p><div class="reward-bottom"><span class="reward-price">USD</span><button class="redeem-btn" onclick="openWithdraw('Payoneer')">Withdraw</button></div></div>
+</div></div><p class="demo-note">Important: requests are only a front-end demo. Connect a secure backend, payment provider, and admin review before accepting real withdrawal details. Check availability and applicable rules for your country.</p></section>
+
+<section id="walletPage" class="page"><div class="welcome"><div class="eyebrow">YOUR FINANCES</div><h1>My <span>Wallet</span></h1><p>Review your demo balance and transaction activity.</p></div><div class="wallet-card"><p>Available Demo Balance</p><h2>$<span id="walletBalance">0.00</span></h2><p class="wallet-note">This is a demonstration balance, not withdrawable money.</p></div><div class="stats-grid"><div class="stat-card"><div class="stat-icon purple"><svg><use href="#i-arrow-down"/></svg></div><div class="stat-number">$0.00</div><div class="stat-label">Withdrawn</div></div><div class="stat-card"><div class="stat-icon green"><svg><use href="#i-coin"/></svg></div><div class="stat-number" id="walletEarned">$0.00</div><div class="stat-label">Demo Earned</div></div><div class="stat-card"><div class="stat-icon cyan"><svg><use href="#i-clock"/></svg></div><div class="stat-number" id="walletTasks">0</div><div class="stat-label">Activities</div></div></div><div class="section"><div class="section-heading"><h2>Transaction History</h2></div><div class="activity-list" id="walletActivityList"><div class="activity-item"><div class="activity-icon"><svg><use href="#i-clock"/></svg></div><div class="activity-info"><h3>No transactions yet</h3><p>Your demo activity will appear here.</p></div></div></div></div></section>
+
+<!-- REFERRAL PAGE -->
+<section id="referralPage" class="page">
+  <div class="welcome"><div class="eyebrow">INVITE & GROW</div><h1>Referral <span>Program</span></h1><p>Invite friends to discover RewardX Global and share your referral link.</p></div>
+  <div class="referral-hero">
+    <div class="referral-hero-icon"><svg><use href="#i-users"/></svg></div>
+    <h2>Friends make rewards <span>better!</span></h2>
+    <p>Share your personal demo referral link with friends. When they open it, your referral code is included in the link.</p>
+    <div class="referral-box">
+      <label for="referralCode">YOUR REFERRAL CODE</label>
+      <div class="referral-link-row"><input class="referral-link-input" id="referralCode" value="RX123456" readonly><button class="copy-btn" onclick="copyReferralCode()"><svg><use href="#i-copy"/></svg> Copy</button></div>
+    </div>
+    <div class="referral-box">
+      <label for="referralLink">YOUR REFERRAL LINK</label>
+      <div class="referral-link-row"><input class="referral-link-input" id="referralLink" readonly aria-label="Your referral link"><button class="copy-btn" onclick="copyReferralLink()"><svg><use href="#i-copy"/></svg> Copy Link</button></div>
+      <button class="share-btn" onclick="shareReferralLink()"><svg><use href="#i-share"/></svg> Share Referral Link</button>
+    </div>
+  </div>
+  <div class="referral-stats">
+    <div class="referral-stat"><strong id="referralCount">0</strong><span>Friends Invited (demo)</span></div>
+    <div class="referral-stat"><strong id="referralReward">$0.00</strong><span>Referral Rewards (demo)</span></div>
+  </div>
+  <section class="section"><div class="section-heading"><h2>How It Works</h2></div><div class="activity-list" style="padding:4px 14px">
+    <div class="how-step"><div class="step-num">1</div><div><h3>Copy your referral link</h3><p>Tap Copy Link, or use Share Referral Link to send it to friends.</p></div></div>
+    <div class="how-step"><div class="step-num">2</div><div><h3>Share with your friends</h3><p>Send the link through WhatsApp, Messenger, or another app.</p></div></div>
+    <div class="how-step"><div class="step-num">3</div><div><h3>Track referrals after setup</h3><p>This design demo does not track registrations. Real referral tracking requires a user database and backend.</p></div></div>
+  </div></section>
+  <p class="demo-note">Referral code is generated from your Firebase user ID. Actual referral attribution, reward credits, task verification, and payouts are not enabled in this front-end file; these require trusted backend logic and secure database rules.</p>
+</section>
+
+
+<!-- GIFT CARDS PAGE -->
+<section id="giftcardsPage" class="page">
+ <div class="welcome"><div class="eyebrow">REDEEM YOUR REWARDS</div><h1>Gift <span>Cards</span></h1><p>Choose a gift card and submit a request for admin review.</p></div>
+ <div class="stats-grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+  <div class="reward-card"><div class="reward-symbol" style="color:#f5c542;background:#fff3cd">A</div><h3>Amazon</h3><p>Amazon gift card</p><div class="reward-bottom"><span class="reward-price">$5–$25</span><button class="redeem-btn" onclick="openGiftCardRequest('Amazon')">Request</button></div></div>
+  <div class="reward-card"><div class="reward-symbol" style="color:#4285f4;background:#e8f0fe">G</div><h3>Google Play</h3><p>Google Play gift card</p><div class="reward-bottom"><span class="reward-price">$5–$25</span><button class="redeem-btn" onclick="openGiftCardRequest('Google Play')">Request</button></div></div>
+  <div class="reward-card"><div class="reward-symbol" style="color:#111;background:#eee">A</div><h3>Apple</h3><p>Apple gift card</p><div class="reward-bottom"><span class="reward-price">$5–$25</span><button class="redeem-btn" onclick="openGiftCardRequest('Apple')">Request</button></div></div>
+  <div class="reward-card"><div class="reward-symbol" style="color:#6441a5;background:#eee5ff">S</div><h3>Steam</h3><p>Steam wallet card</p><div class="reward-bottom"><span class="reward-price">$5–$25</span><button class="redeem-btn" onclick="openGiftCardRequest('Steam')">Request</button></div></div>
+  <div class="reward-card"><div class="reward-symbol" style="color:#107c10;background:#e6f5e6">X</div><h3>Xbox</h3><p>Xbox gift card</p><div class="reward-bottom"><span class="reward-price">$5–$25</span><button class="redeem-btn" onclick="openGiftCardRequest('Xbox')">Request</button></div></div>
+  <div class="reward-card"><div class="reward-symbol" style="color:#003791;background:#e8efff">P</div><h3>PlayStation</h3><p>PlayStation Store card</p><div class="reward-bottom"><span class="reward-price">$5–$25</span><button class="redeem-btn" onclick="openGiftCardRequest('PlayStation')">Request</button></div></div>
+  <div class="reward-card"><div class="reward-symbol" style="color:#1db954;background:#e5f8ec">S</div><h3>Spotify</h3><p>Spotify gift card</p><div class="reward-bottom"><span class="reward-price">$5–$25</span><button class="redeem-btn" onclick="openGiftCardRequest('Spotify')">Request</button></div></div>
+  <div class="reward-card"><div class="reward-symbol" style="color:#e50914;background:#ffe9ea">N</div><h3>Netflix</h3><p>Netflix gift card</p><div class="reward-bottom"><span class="reward-price">$5–$25</span><button class="redeem-btn" onclick="openGiftCardRequest('Netflix')">Request</button></div></div>
+ </div>
+ <p class="demo-note">Important: This page submits a request only. Gift cards are not issued automatically. Firebase Database Rules and an admin approval workflow must be configured before real use.</p>
+</section>
+
+<section id="profilePage" class="page"><div class="welcome"><div class="eyebrow">YOUR ACCOUNT</div><h1>My <span>Profile</span></h1><p>Manage your profile and explore account settings.</p></div><div class="profile-card"><div class="big-avatar"><div class="big-avatar-inner"><svg><use href="#i-user"/></svg></div></div><h2 id="profileName">RewardX User</h2><p id="profileEmail">demo@rewardx.example</p><div class="member-badge"><svg><use href="#i-shield"/></svg> Demo Member</div></div><div class="section-heading"><h2>Account Settings</h2></div><div class="profile-menu">
+<button class="profile-menu-item" onclick="openModal('edit')"><div class="menu-icon"><svg><use href="#i-edit"/></svg></div><div class="menu-copy"><h3>Edit Profile</h3><p>Update your display name and email</p></div><div class="menu-arrow"><svg><use href="#i-chevron"/></svg></div></button>
+<button class="profile-menu-item" onclick="openModal('security')"><div class="menu-icon cyan"><svg><use href="#i-lock"/></svg></div><div class="menu-copy"><h3>Security & Privacy</h3><p>Account safety information</p></div><div class="menu-arrow"><svg><use href="#i-chevron"/></svg></div></button>
+<button class="profile-menu-item" onclick="openModal('notifications')"><div class="menu-icon green"><svg><use href="#i-bell"/></svg></div><div class="menu-copy"><h3>Notifications</h3><p>View notification information</p></div><div class="menu-arrow"><svg><use href="#i-chevron"/></svg></div></button>
+<button class="profile-menu-item" onclick="openModal('help')"><div class="menu-icon e-orange"><svg><use href="#i-help"/></svg></div><div class="menu-copy"><h3>Help & Support</h3><p>Get information about RewardX</p></div><div class="menu-arrow"><svg><use href="#i-chevron"/></svg></div></button>
+<button class="profile-menu-item" onclick="showPage('referral')"><div class="menu-icon"><svg><use href="#i-users"/></svg></div><div class="menu-copy"><h3>Referral Program</h3><p>Copy and share your referral link</p></div><div class="menu-arrow"><svg><use href="#i-chevron"/></svg></div></button>
+<button class="profile-menu-item" onclick="openModal('about')"><div class="menu-icon"><svg><use href="#i-spark"/></svg></div><div class="menu-copy"><h3>About RewardX</h3><p>App information and demo status</p></div><div class="menu-arrow"><svg><use href="#i-chevron"/></svg></div></button>
+</div><p class="demo-note">RewardX Global · Premium Rewards Interface</p><div class="section"><button class="primary-btn" style="width:100%" onclick="rewardxSignOut()">Log Out</button></div></section>
+</div>
+
+<nav class="bottom-nav" aria-label="Main navigation">
+<button class="nav-item active" data-page="home" onclick="showPage('home')"><svg><use href="#i-home"/></svg><span>Home</span></button>
+<button class="nav-item" data-page="earn" onclick="showPage('earn')"><svg><use href="#i-target"/></svg><span>Earn</span></button>
+<button class="nav-item" data-page="rewards" onclick="showPage('rewards')"><svg><use href="#i-arrow-down"/></svg><span>Withdraw</span></button>
+<button class="nav-item" data-page="giftcards" onclick="showPage('giftcards')"><svg><use href="#i-spark"/></svg><span>Gift Cards</span></button>
+<button class="nav-item" data-page="wallet" onclick="showPage('wallet')"><svg><use href="#i-wallet"/></svg><span>Wallet</span></button>
+<button class="nav-item" data-page="profile" onclick="showPage('profile')"><svg><use href="#i-user"/></svg><span>Profile</span></button>
+</nav>
+
+<div class="modal-overlay" id="modalOverlay" onclick="overlayClose(event)"><div class="modal"><div class="modal-header"><h2 id="modalTitle">RewardX</h2><button class="close-modal" onclick="closeModal()" aria-label="Close"><svg><use href="#i-close"/></svg></button></div><div id="modalContent"></div></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+/* RewardX Firebase Web App configuration */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyCdCFqtmOdLp5zVAdjOow9Qq_7Lt7Z7wh0",
+  authDomain: "app1-fbd12.firebaseapp.com",
+  databaseURL: "https://app1-fbd12-default-rtdb.firebaseio.com",
+  projectId: "app1-fbd12",
+  storageBucket: "app1-fbd12.firebasestorage.app",
+  messagingSenderId: "5576314669",
+  appId: "1:5576314669:web:53cb24fab2af2694108da4"
+};
+</script>
+<script>
+/* RewardX Global: single-file front-end demo. Referral copy/share is functional; tracking and payments are not connected. */
+const state={balance:0,totalEarned:0,tasksDone:0,bonusClaimed:false,activity:[],name:"RewardX User",email:"demo@rewardx.example"};
+const REFERRAL_CODE="RX123456";
+
+function money(value){return Number(value).toFixed(2)}
+
+async function openGiftCardRequest(brand){
+ const user=(window.firebase && firebase.auth)?firebase.auth().currentUser:null;
+ if(!user){toast("Please log in before requesting a gift card.");return;}
+ const title=document.getElementById("modalTitle"),content=document.getElementById("modalContent");
+ title.textContent=brand+" Gift Card Request";
+ content.innerHTML=`<form id="giftCardRequestForm"><div class="form-group"><label for="giftCardValue">Gift card value (USD)</label><select id="giftCardValue" required><option value="5">$5</option><option value="10">$10</option><option value="25">$25</option></select></div><div class="form-group"><label for="giftCardDeliveryEmail">Delivery email</label><input id="giftCardDeliveryEmail" type="email" maxlength="160" placeholder="you@example.com" required value="${String(user.email||'').replace(/[&<>"']/g,'')}"></div><button class="primary-btn" type="submit">Submit Gift Card Request</button></form><p class="demo-note">Your request will be marked pending if Firebase rules allow it. This does not guarantee approval or delivery.</p>`;
+ document.getElementById("modalOverlay").classList.add("show");
+ document.getElementById("giftCardRequestForm").addEventListener("submit",async function(event){
+  event.preventDefault();const submit=this.querySelector('button[type="submit"]');submit.disabled=true;
+  const value=Number(document.getElementById("giftCardValue").value);const deliveryEmail=document.getElementById("giftCardDeliveryEmail").value.trim();
+  try{
+   if(!window.firebase||!firebase.database)throw new Error("Firebase Database is unavailable.");
+   const ref=firebase.database().ref("giftCardRequests").push();
+   await ref.set({requestId:ref.key,uid:user.uid,email:user.email||"",deliveryEmail,brand,valueUSD:value,status:"pending",createdAt:firebase.database.ServerValue.TIMESTAMP});
+   closeModal();toast("Gift card request submitted for admin review.");
+  }catch(error){submit.disabled=false;toast(error.code==="PERMISSION_DENIED"?"Firebase rules blocked this request. Admin must configure secure rules first.":"Request failed: "+(error.message||"unknown error"));}
+ });
+}
+
+function showPage(page){
+  const pages=["home","earn","rewards","wallet","referral","giftcards","profile"];
+  pages.forEach(name=>{const section=document.getElementById(name+"Page");if(section)section.classList.toggle("active",name===page)});
+  document.querySelectorAll(".nav-item").forEach(button=>button.classList.toggle("active",button.dataset.page===page));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+let toastTimer;
+function toast(message){const el=document.getElementById("toast");el.textContent=message;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2600)}
+function claimBonus(){if(state.bonusClaimed){toast("You have already claimed today's demo bonus.");return}state.bonusClaimed=true;const button=document.getElementById("claimBtn");button.textContent="Claimed";button.disabled=true;toast("Demo bonus claimed! No real money was added.")}
+function showTask(taskName){openModal("task",taskName)}
+function redeem(rewardName){openModal("redeem",rewardName)}
+function openWithdraw(method){
+ const title=document.getElementById("modalTitle"),content=document.getElementById("modalContent");
+ title.textContent="Withdraw · "+method;
+ const label = method==="Binance (USDT)" ? "Binance Pay ID / UID" : (method==="PayPal" ? "PayPal email" : "Payoneer account email");
+ const currency = method==="Binance (USDT)" ? "USDT" : "USD";
+ content.innerHTML=`<form id="withdrawForm"><div class="form-group"><label for="withdrawAmount">Amount (${currency})</label><input id="withdrawAmount" type="number" min="1" step="0.01" placeholder="Enter amount" required></div><div class="form-group"><label for="withdrawAccount">${label}</label><input id="withdrawAccount" type="text" maxlength="120" placeholder="Enter your ${label.toLowerCase()}" required></div><button class="primary-btn" type="submit">Submit Demo Request</button></form><p class="demo-note">Demo only. This form does not send or store payment details and cannot transfer money.</p>`;
+ document.getElementById("withdrawForm").addEventListener("submit",event=>{
+  event.preventDefault();
+  const amount=Number(document.getElementById("withdrawAmount").value);
+  const account=document.getElementById("withdrawAccount").value.trim();
+  if(!Number.isFinite(amount)||amount<=0||!account){toast("Please enter valid details.");return}
+  closeModal();
+  toast("Demo withdrawal request preview submitted. No payment was sent.");
+ });
+ document.getElementById("modalOverlay").classList.add("show");
+}
+function openModal(type,extra=""){
+ const title=document.getElementById("modalTitle"),content=document.getElementById("modalContent");
+ if(type==="edit"){
+  title.textContent="Edit Profile";
+  content.innerHTML=`<form id="editProfileForm"><div class="form-group"><label for="editName">Display Name</label><input id="editName" maxlength="50" value="${escapeHTML(state.name)}" required></div><div class="form-group"><label for="editEmail">Email Address</label><input id="editEmail" type="email" maxlength="100" value="${escapeHTML(state.email)}" required></div><button class="primary-btn" type="submit">Save Profile</button></form><p class="demo-note">Changes are saved only in this page session.</p>`;
+  document.getElementById("editProfileForm").addEventListener("submit",event=>{event.preventDefault();state.name=document.getElementById("editName").value.trim();state.email=document.getElementById("editEmail").value.trim();if(!state.name||!state.email){toast("Please fill in both fields.");return}document.getElementById("profileName").textContent=state.name;document.getElementById("profileEmail").textContent=state.email;closeModal();toast("Demo profile updated.")});
+ }else if(type==="notifications"){
+  title.textContent="Notifications";content.innerHTML=`<div class="task-card"><div class="task-icon e-purple"><svg><use href="#i-spark"/></svg></div><div class="task-info"><h3>Welcome to RewardX</h3><p>Your premium demo interface is ready to explore.</p></div></div><p class="modal-description">Real push notifications require a notification service and backend configuration.</p><button class="primary-btn" onclick="closeModal()">Got It</button>`;
+ }else if(type==="security"){
+  title.textContent="Security & Privacy";content.innerHTML=`<p class="modal-description">Your sign-in is handled by Firebase Authentication. Profile sync requires correctly configured Realtime Database Rules. Never store passwords in the database.</p><button class="primary-btn" onclick="closeModal()">Understood</button>`;
+ }else if(type==="help"){
+  title.textContent="Help & Support";content.innerHTML=`<p class="modal-description">RewardX Global is currently a front-end demo. Real task verification, account support, withdrawals and reward redemption must be connected before launch.</p><button class="primary-btn" onclick="closeModal()">Close</button>`;
+ }else if(type==="about"){
+  title.textContent="About RewardX";content.innerHTML=`<p class="modal-description">RewardX Global is a premium rewards dashboard design. Balance figures and reward options are not real financial transactions.</p><button class="primary-btn" onclick="closeModal()">Close</button>`;
+ }else if(type==="task"){
+  title.textContent=extra||"Activity";content.innerHTML=`<p class="modal-description"><strong>${escapeHTML(extra||"Activity")}</strong><br><br>This section is currently a design preview. Real earning needs verified task integration and a backend.</p><button class="primary-btn" onclick="closeModal()">Got It</button>`;
+ }else if(type==="redeem"){
+  title.textContent=extra+" Reward";content.innerHTML=`<p class="modal-description"><strong>${escapeHTML(extra)}</strong> is a demo reward option. No real gift card, payment or redemption service is connected.</p><button class="primary-btn" onclick="closeModal()">Close</button>`;
+ }else{title.textContent="RewardX";content.innerHTML=`<p class="modal-description">Welcome to RewardX.</p><button class="primary-btn" onclick="closeModal()">Close</button>`}
+ document.getElementById("modalOverlay").classList.add("show");
+}
+function closeModal(){document.getElementById("modalOverlay").classList.remove("show")}
+function overlayClose(event){if(event.target.id==="modalOverlay")closeModal()}
+function escapeHTML(value){return String(value).replace(/[&<>"']/g,character=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[character]))}
+
+function getReferralLink(){
+  const current=new URL(window.location.href);
+  current.searchParams.set("ref",REFERRAL_CODE);
+  return current.href;
+}
+function initializeReferral(){
+  const code=document.getElementById("referralCode");
+  const link=document.getElementById("referralLink");
+  if(code)code.value=REFERRAL_CODE;
+  if(link)link.value=getReferralLink();
+}
+async function copyText(text){
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(text);
+    }else{
+      const temporary=document.createElement("textarea");
+      temporary.value=text;
+      temporary.setAttribute("readonly","");
+      temporary.style.position="fixed";
+      temporary.style.opacity="0";
+      document.body.appendChild(temporary);
+      temporary.select();
+      const success=document.execCommand("copy");
+      temporary.remove();
+      if(!success)throw new Error("Copy command failed");
+    }
+    toast("Copied successfully!");
+  }catch(error){
+    toast("Copy did not work. Please select and copy the text manually.");
+  }
+}
+function copyReferralCode(){copyText(REFERRAL_CODE)}
+function copyReferralLink(){copyText(getReferralLink())}
+async function shareReferralLink(){
+  const link=getReferralLink();
+  const shareData={title:"Join RewardX Global",text:"Check out RewardX Global using my referral link:",url:link};
+  if(navigator.share){
+    try{await navigator.share(shareData)}catch(error){if(error.name!=="AbortError")toast("Sharing was cancelled or unavailable.")}
+  }else{
+    await copyText(link);
+    toast("Sharing is not supported here. Link copied instead.");
+  }
+}
+function updateDashboard(){
+ document.getElementById("balanceAmount").textContent=money(state.balance);
+ document.getElementById("totalEarned").textContent="$"+money(state.totalEarned);
+ document.getElementById("tasksDone").textContent=state.tasksDone;
+ document.getElementById("walletBalance").textContent=money(state.balance);
+ document.getElementById("walletEarned").textContent="$"+money(state.totalEarned);
+ document.getElementById("walletTasks").textContent=state.tasksDone;
+}
+initializeReferral();
+// Extra tactile feedback for touch devices and mouse users.
+document.addEventListener("pointerdown", event => {
+  const target = event.target.closest("button, .earn-card, .reward-card, .stat-card, .profile-menu-item");
+  if (target && !target.disabled) {
+    target.classList.add("is-pressed");
+    window.setTimeout(() => target.classList.remove("is-pressed"), 180);
+  }
+});
+
+updateDashboard();
+</script>
+
+<script>
+/* Firebase Email/Password authentication. Configure FIREBASE_CONFIG above before use. */
+let rewardxAuthMode = "login";
+function setAuthMode(mode){
+  rewardxAuthMode = mode === "register" ? "register" : "login";
+  document.getElementById("loginTab").classList.toggle("active", rewardxAuthMode==="login");
+  document.getElementById("registerTab").classList.toggle("active", rewardxAuthMode==="register");
+  document.getElementById("authNameGroup").hidden = rewardxAuthMode!=="register";
+  document.getElementById("authConfirmGroup").hidden = rewardxAuthMode!=="register";
+  document.getElementById("authReferralGroup").hidden = rewardxAuthMode!=="register";
+  document.getElementById("authSubmit").textContent = rewardxAuthMode==="login" ? "Login" : "Create Account";
+  document.getElementById("forgotPassword").hidden = rewardxAuthMode!=="login";
+  document.getElementById("authPassword").autocomplete = rewardxAuthMode==="login" ? "current-password" : "new-password";
+  setAuthMessage("");
+}
+function setAuthMessage(message, success=false){
+  const el=document.getElementById("authMessage");
+  el.textContent=message||"";
+  el.classList.toggle("success",!!success);
+}
+function firebaseIsConfigured(){
+  return !!(window.firebase && FIREBASE_CONFIG.apiKey &&
+    FIREBASE_CONFIG.projectId && FIREBASE_CONFIG.appId);
+}
+function firebaseAuthError(error){
+  const messages={
+    "auth/email-already-in-use":"This email is already registered. Please log in.",
+    "auth/invalid-email":"Please enter a valid email address.",
+    "auth/weak-password":"Choose a stronger password with at least 6 characters.",
+    "auth/user-not-found":"No account found for this email.",
+    "auth/wrong-password":"Incorrect email or password.",
+    "auth/invalid-credential":"Incorrect email or password.",
+    "auth/too-many-requests":"Too many attempts. Please try again later.",
+    "auth/network-request-failed":"Network error. Check your internet connection.",
+    "auth/operation-not-allowed":"Enable this sign-in method in Firebase Authentication.",
+    "auth/popup-closed-by-user":"Google sign-in was cancelled."
+  };
+  return messages[error.code] || "Authentication failed: " + (error.message || error.code || "Please try again.");
+}
+function rewardxShowSignedIn(user){
+  document.getElementById("authGate").classList.add("hidden");
+  const email=user.email||"";
+  state.email=email;
+  state.name=user.displayName || (email ? email.split("@")[0] : "RewardX User");
+  state.uid=user.uid;
+  state.balance=Number(state.balance)||0;
+  state.totalEarned=Number(state.totalEarned)||0;
+  const profileName=document.getElementById("profileName");
+  const profileEmail=document.getElementById("profileEmail");
+  if(profileName)profileName.textContent=state.name;
+  if(profileEmail)profileEmail.textContent=email;
+  const profileChip=document.getElementById("authUserChip");
+  if(profileChip)profileChip.textContent=email;
+  const header=document.querySelector(".header");
+  if(header && !document.getElementById("authUserChip")){
+    const chip=document.createElement("span");
+    chip.id="authUserChip";chip.className="auth-user-chip";chip.title=email;chip.textContent=email;
+    header.appendChild(chip);
+  }
+}
+function rewardxShowSignedOut(){
+  document.getElementById("authGate").classList.remove("hidden");
+}
+async function rewardxSignOut(){
+  if(!firebaseIsConfigured()){setAuthMessage("Firebase is not configured yet.");return;}
+  try{await firebase.auth().signOut();rewardxShowSignedOut();setAuthMode("login");toast("Logged out.");}
+  catch(error){toast(firebaseAuthError(error));}
+}
+async function resetAuthPassword(){
+  const email=document.getElementById("authEmail").value.trim();
+  if(!email){setAuthMessage("Enter your email address first.");return;}
+  if(!firebaseIsConfigured()){setAuthMessage("First add your Firebase configuration to the code.");return;}
+  try{await firebase.auth().sendPasswordResetEmail(email);setAuthMessage("Password reset email sent. Check your inbox.",true);}
+  catch(error){setAuthMessage(firebaseAuthError(error));}
+}
+async function rewardxSaveUserProfile(user, nameOverride=""){
+  if(!user || !window.firebase || !firebase.database) return;
+  const name=nameOverride || user.displayName || (user.email ? user.email.split("@")[0] : "RewardX User");
+  const code="RX"+user.uid.slice(0,8).toUpperCase();
+  try{
+    await firebase.database().ref("users/"+user.uid+"/profile").update({
+      uid:user.uid, name:name, email:user.email||"", referralCode:code,
+      lastLoginAt:firebase.database.ServerValue.TIMESTAMP
+    });
+    const codeEl=document.getElementById("referralCode");
+    if(codeEl)codeEl.value=code;
+    const linkEl=document.getElementById("referralLink");
+    if(linkEl){const u=new URL(window.location.href);u.searchParams.set("ref",code);linkEl.value=u.href;}
+  }catch(err){
+    console.warn("Profile sync did not complete. Check Realtime Database rules.",err);
+    toast("Signed in, but profile sync needs Database Rules setup.");
+  }
+}
+async function rewardxGoogleSignIn(){
+  if(!firebaseIsConfigured()){setAuthMessage("Firebase configuration is missing.");return;}
+  const btn=document.getElementById("googleSignInBtn");
+  btn.disabled=true;btn.textContent="Opening Google...";
+  try{
+    const provider=new firebase.auth.GoogleAuthProvider();
+    const result=await firebase.auth().signInWithPopup(provider);
+    await rewardxSaveUserProfile(result.user);
+    rewardxShowSignedIn(result.user);toast("Google login successful!");
+  }catch(error){setAuthMessage(firebaseAuthError(error));}
+  finally{btn.disabled=false;btn.textContent="Continue with Google";}
+}
+document.getElementById("googleSignInBtn").addEventListener("click",rewardxGoogleSignIn);
+
+document.getElementById("authForm").addEventListener("submit",async event=>{
+  event.preventDefault();
+  const email=document.getElementById("authEmail").value.trim();
+  const password=document.getElementById("authPassword").value;
+  const name=document.getElementById("authName").value.trim();
+  const confirm=document.getElementById("authConfirm").value;
+  if(!firebaseIsConfigured()){setAuthMessage("Firebase is not configured yet. Replace the placeholder values in FIREBASE_CONFIG with your Firebase Web App config.");return;}
+  const submit=document.getElementById("authSubmit");
+  submit.disabled=true;submit.textContent="Please wait...";
+  try{
+    if(rewardxAuthMode==="register"){
+      if(name.length<2)throw {code:"custom/name",message:"Please enter your full name."};
+      if(password!==confirm)throw {code:"custom/password",message:"Passwords do not match."};
+      const credential=await firebase.auth().createUserWithEmailAndPassword(email,password);
+      await credential.user.updateProfile({displayName:name});
+      state.name=name;
+      await rewardxSaveUserProfile(credential.user,name);
+      /* Referral attribution and rewards must be verified by trusted backend code. */
+      rewardxShowSignedIn(credential.user);
+      toast("Account created successfully!");
+    }else{
+      const credential=await firebase.auth().signInWithEmailAndPassword(email,password);
+      await rewardxSaveUserProfile(credential.user);
+      rewardxShowSignedIn(credential.user);
+      toast("Logged in successfully!");
+    }
+  }catch(error){
+    setAuthMessage(error.code==="custom/name"||error.code==="custom/password" ? error.message : firebaseAuthError(error));
+  }finally{
+    submit.disabled=false;submit.textContent=rewardxAuthMode==="login"?"Login":"Create Account";
+  }
+});
+(function initializeRewardXFirebaseAuth(){
+  if(!firebaseIsConfigured()){
+    setAuthMessage("Setup needed: Firebase credentials have not been added.");
+    return;
+  }
+  try{
+    if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);
+    firebase.auth().onAuthStateChanged(async user=>{
+      if(user){await rewardxSaveUserProfile(user);rewardxShowSignedIn(user);}
+      else rewardxShowSignedOut();
+    });
+    document.getElementById("authSetup").textContent="Firebase config added. Enable Email/Password and Google providers in Firebase Console, and publish the supplied Database Rules before testing profile sync.";
+  }catch(error){setAuthMessage("Firebase setup error: "+error.message);}
+})();
+</script>
+
+</body>
+</html>
